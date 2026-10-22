@@ -11,7 +11,9 @@
 
 <p align="center">
   <a href="https://expldfsh.com">
-    <img src="https://img.shields.io/badge/Personal_Website-expldfsh.com-3178C6?style=flat-square&logo=googlechrome&logoColor=white" alt="Personal Website">
+    <img src="https://img.shields.io/badge/Personal_Website-expldfsh.com-3178C6?style=flat-square&logo=googlechrome&logoColor=white"
+         alt="Personal Website"
+         height="30">
   </a>
 </p>
 
