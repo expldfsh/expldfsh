@@ -13,7 +13,7 @@
   <a href="https://expldfsh.com">
     <img src="https://img.shields.io/badge/Personal_Website-expldfsh.com-3178C6?style=flat-square&logo=googlechrome&logoColor=white"
          alt="Personal Website"
-         height="67">
+         height="91">
   </a>
 </p>
 
