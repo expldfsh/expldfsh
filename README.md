@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./chicken.gif" alt="A little pixel chicken walking" width="160">
+  <img src="./chiken.gif" alt="A little pixel chicken walking" width="160">
 </p>
 
 <h3 align="center">Hi, I'm expldfsh 👋</h3>
