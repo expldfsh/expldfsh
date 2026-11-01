@@ -14,7 +14,7 @@
     <img
       src="https://img.shields.io/badge/Explore_My_Little_Space_%E2%86%97-282A40?style=for-the-badge&logo=homeassistant&logoColor=8BDCF2"
       alt="Explore My Little Space — Personal website"
-      height="200"
+      height="400"
     >
   </a>
   <br>
