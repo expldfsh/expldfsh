@@ -11,10 +11,14 @@
 
 <p align="center">
   <a href="https://expldfsh.com">
-    <img src="https://img.shields.io/badge/Personal_Website-expldfsh.com-3178C6?style=flat-square&logo=googlechrome&logoColor=white"
-         alt="Personal Website"
-         height="91">
+    <img
+      src="https://img.shields.io/badge/Explore_My_Little_Space_%E2%86%97-282A40?style=for-the-badge&logo=homeassistant&logoColor=8BDCF2"
+      alt="Explore My Little Space — Personal website"
+      height="44"
+    >
   </a>
+  <br>
+  <sub>Personal website · expldfsh.com</sub>
 </p>
 
 ---
