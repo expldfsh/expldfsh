@@ -12,7 +12,7 @@
 I'm a CS Specialist student at the University of Toronto Mississauga.
 I like building small, useful tools — lately AI-powered apps and developer utilities — often late at night.
 
-- 🛠️ Mostly writing **Python** and **Go**, with some **C** for systems coursework
+- 🛠️ Mostly writing **Python**, **C** and **GO** 
 - ⌨️ Living in **Neovim** and the terminal
 
 📫 Reach me at **[expldfsh@gmail.com](mailto:expldfsh@gmail.com)** · 🌐 Personal website: **[expldfsh.com](https://expldfsh.com)**
