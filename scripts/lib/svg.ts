@@ -34,6 +34,8 @@ export const BASE_STYLE = `
 @keyframes bl{0%,60%{opacity:1}61%,100%{opacity:.15}}
 .sh{animation:sh 4s ease-in-out infinite}
 @keyframes sh{0%,100%{transform:translateX(0)}50%{transform:translateX(3px)}}
+.cu{animation:cu 1.1s steps(1) infinite}
+@keyframes cu{0%,55%{opacity:1}56%,100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}`;
 
 export interface SvgDocOptions {

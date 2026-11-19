@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - "scripts/**"
+      - "content/**"
       - "profile.config.json"
       - "package.json"
       - "package-lock.json"
@@ -52,7 +53,7 @@ jobs:
 
       - name: Commit if changed
         run: |
-          git add assets/generated data/snapshot.json
+          git add assets/generated data/snapshot.json README.md
           if git diff --cached --quiet; then
             echo "Graphics unchanged; nothing to commit."
             exit 0

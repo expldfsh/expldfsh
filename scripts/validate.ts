@@ -6,7 +6,7 @@ import { existsSync, readFileSync, statSync } from 'node:fs';
 import { XMLValidator } from 'fast-xml-parser';
 import { parse as parseYaml } from 'yaml';
 import { fromRoot, loadSnapshot } from './lib/config.ts';
-import { OUTPUTS } from './generate.ts';
+import { OUTPUTS, readIntro, syncReadmeAlt } from './generate.ts';
 
 const problems: string[] = [];
 const MAX_BYTES = 120 * 1024;
@@ -34,6 +34,7 @@ const localRefs = [...readme.matchAll(/(?:src|srcset|href)="([^"]+)"/g), ...read
   .filter((p) => p && !/^(?:https?:|mailto:)/.test(p));
 for (const ref of localRefs) if (!existsSync(fromRoot(ref))) problems.push(`README.md references missing file ${ref}`);
 for (const name of OUTPUTS) if (!readme.includes(`assets/generated/${name}`)) problems.push(`README.md does not use assets/generated/${name}`);
+if (syncReadmeAlt(readme, readIntro()) !== readme) problems.push('README.md intro alt text is out of date with content/intro.md (run npm run generate)');
 for (const m of readme.matchAll(/<img [^>]*>/g)) if (!/alt="[^"]+"/.test(m[0])) problems.push(`README.md image without alt text: ${m[0].slice(0, 60)}…`);
 
 try {

@@ -70,6 +70,20 @@ The second image is a 24-column histogram of *when* commits are written.
 
 Only aggregated hour counts are written to the snapshot. No repository names, messages or hashes.
 
+## The intro window
+
+The "About me" block is drawn as a Neovim window in Tokyo Night Moon: bufferline tabs, relative line
+numbers, a cursor line, Markdown highlighting with concealed `**`/links and `~` past the end of the
+buffer. The page ends with the matching lualine-style status line (`synced` = the last date in the
+data snapshot; it links to the website) and Neovim's message line (`"README.md" 10L, 568B` is the
+real line and byte count of the intro text).
+
+The text lives in [`content/intro.md`](../content/intro.md). Edit it and push: the workflow
+re-renders the image and copies the same text into the image's `alt` attribute in README.md, so
+screen readers and search still get the words. Locally, `npm run generate` does both.
+The email and website are part of the window too. Text inside an image can't be clicked, so the
+whole window links to the website (as does the status line), and the address is also in the alt text.
+
 ## Setup (one time)
 
 The workflow needs a read-only token that can see private repositories' commit history.
@@ -85,8 +99,8 @@ The workflow needs a read-only token that can see private repositories' commit h
 3. **Actions → Update profile graphics → Run workflow** once to check that it works.
 
 The workflow's job has `contents: write` only to commit the regenerated files. It commits only
-when the output actually changed and never touches anything outside `assets/generated/` and
-`data/snapshot.json`. If the API fails, the job fails and the previous images stay up; it never
+when the output actually changed and never touches anything outside `assets/generated/`,
+`data/snapshot.json` and the intro image's `alt` text in README.md. If the API fails, the job fails and the previous images stay up; it never
 publishes partial or placeholder numbers.
 
 ## Local development

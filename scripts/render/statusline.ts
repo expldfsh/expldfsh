@@ -1,5 +1,6 @@
-/** Neovim/lualine-style footer. The README wraps it in a link to the personal website. */
+/** Neovim/lualine-style status line + message line: the page footer. The README links it to the website. */
 import { tn } from '../lib/palette.ts';
+import { parse } from '../lib/markdown.ts';
 import { esc, f, monoWidth, rect, svgDocument } from '../lib/svg.ts';
 import type { ProfileConfig, Snapshot } from '../lib/types.ts';
 import type { Variant } from './city.ts';
@@ -26,9 +27,7 @@ function branchIcon(x: number, mid: number, color: string): string {
   );
 }
 
-export function renderStatusline(snap: Snapshot, config: ProfileConfig, variant: Variant): string {
-  const W = variant === 'desktop' ? 880 : 440;
-  const H = variant === 'desktop' ? 34 : 32;
+function statuslineBody(snap: Snapshot, config: ProfileConfig, variant: Variant, W: number, H: number): string {
   const host = new URL(config.website).host;
   const synced = `synced ${snap.calendar.endDate}`;
   const left: Segment[] = [{ text: 'NORMAL', bg: tn.blue, fg: tn.bgDark, bold: true }];
@@ -68,12 +67,29 @@ export function renderStatusline(snap: Snapshot, config: ProfileConfig, variant:
     x -= ARROW;
   });
 
+  return body.join('');
+}
+
+/** Status line, then the message line Neovim shows after opening the file (real line/byte counts of the intro). */
+export function renderStatusline(snap: Snapshot, config: ProfileConfig, intro: string, variant: Variant): string {
+  const W = variant === 'desktop' ? 880 : 440;
+  const barH = variant === 'desktop' ? 34 : 32;
+  const msgH = 28;
+  const font = variant === 'desktop' ? 13.5 : 14;
+  const text = intro.replace(/\s+$/, '') + '\n';
+  const message = `"README.md" ${parse(intro).length}L, ${Buffer.byteLength(text)}B`;
+  const body = [
+    rect(0, 0, W, barH + msgH, tn.bg),
+    statuslineBody(snap, config, variant, W, barH),
+    `<text x="${variant === 'desktop' ? 16 : 12}" y="${f(barH + msgH / 2 + font * 0.36)}" class="t" font-size="${font}" fill="${tn.fgDark}" xml:space="preserve">${esc(message)}</text>`,
+  ];
+  const host = new URL(config.website).host;
   return svgDocument({
     width: W,
-    height: H,
+    height: barH + msgH,
     radius: 8,
     title: `${host} — personal website`,
-    desc: `Editor-style status line. Links to ${config.website}. Graphics last synced with GitHub data on ${snap.calendar.endDate}.`,
+    desc: `Editor-style status line linking to ${config.website}. Graphics last synced with GitHub data on ${snap.calendar.endDate}.`,
     body: body.join(''),
   });
 }
