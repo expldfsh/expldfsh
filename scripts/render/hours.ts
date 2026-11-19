@@ -1,11 +1,11 @@
 /**
  * Commit-hours strip: 24 columns, one per hour of the day in the configured time zone.
- * The axis starts at 06:00 so the night (22:00–04:59) forms one contiguous shaded block.
- * Column height = commits in that hour relative to the busiest hour.
+ * The axis starts at 06:00 so the night (22:00–04:59) is contiguous; it is underlined in magenta.
+ * The busiest 4-hour window is the soft blue box. Column height = commits relative to the busiest hour.
  */
 import { tn, WINDOW_RAMP } from '../lib/palette.ts';
 import { formatHour, HOUR_ORDER, nightShare, peakWindow } from '../lib/stats.ts';
-import { esc, f, rect, svgDocument, text } from '../lib/svg.ts';
+import { esc, f, monoWidth, rect, svgDocument, text } from '../lib/svg.ts';
 import type { Snapshot } from '../lib/types.ts';
 import type { Variant } from './city.ts';
 import { stars } from './sky.ts';
@@ -48,13 +48,28 @@ export function renderHours(snap: Snapshot, variant: Variant): string {
     .join('');
 
   const body: string[] = [rect(0, 0, L.W, L.H, tn.bgDark)];
-  const nightX = L.cx0 + HOUR_ORDER.indexOf(22) * step;
+  const colX = (k: number) => L.cx0 + k * step;
   if (variant === 'desktop') body.push(stars(26, { x0: L.cx0 - 20, y0: 6, x1: L.W - 6, y1: 40 }, 'hours'));
-  body.push(rect(nightX, L.bandTop, L.cx1 - nightX, L.baseline - L.bandTop, tn.magenta, 'fill-opacity=".05"'));
+
+  // Busiest 4-hour window: a soft box behind its columns (split in two if it wraps past 06:00).
+  const k0 = HOUR_ORDER.indexOf(peak.start);
+  const spans = k0 + 4 <= 24 ? [[k0, 4]] : [[k0, 24 - k0], [0, k0 + 4 - 24]];
+  for (const [k, n] of spans as [number, number][]) {
+    body.push(
+      rect(colX(k), L.bandTop, n * step, L.baseline - L.bandTop, tn.blue, 'fill-opacity=".07"'),
+      rect(colX(k), L.bandTop, n * step, 1, tn.blue, 'opacity=".45"'),
+    );
+  }
+  // Night (22:00–04:59, the hours behind the percentage): a magenta rule under those columns.
+  const nightStart = colX(HOUR_ORDER.indexOf(22));
+  const nightEnd = colX(HOUR_ORDER.indexOf(5));
   body.push(
-    `<g shape-rendering="geometricPrecision"><circle cx="${f(L.cx1 - 14)}" cy="${L.bandTop + 14}" r="5" fill="#e4e9ff"/>` +
-      `<circle cx="${f(L.cx1 - 12)}" cy="${L.bandTop + 12}" r="5" fill="${tn.bgDark}" fill-opacity=".92"/></g>`,
+    rect(nightStart + 2, L.baseline + 3, nightEnd - nightStart - 4, 2, tn.magenta, 'opacity=".7"'),
+    `<g shape-rendering="geometricPrecision"><circle cx="${f(nightEnd + 7)}" cy="${L.baseline + 4}" r="3.5" fill="#e4e9ff"/>` +
+      `<circle cx="${f(nightEnd + 8.5)}" cy="${L.baseline + 2.6}" r="3.5" fill="${tn.bgDark}"/></g>`,
   );
+  const peakSwatch = (x: number, y: number) => rect(x, y - 8, 9, 9, tn.blue, 'fill-opacity=".3"') + rect(x, y - 8, 9, 1, tn.blue, 'opacity=".7"');
+  const nightSwatch = (x: number, y: number) => rect(x, y - 4, 9, 2, tn.magenta, 'opacity=".7"');
 
   HOUR_ORDER.forEach((hour, k) => {
     const c = hist[hour] ?? 0;
@@ -76,16 +91,20 @@ export function renderHours(snap: Snapshot, variant: Variant): string {
     body.push(
       text(36, 34, 'COMMIT HOURS', 'class="l" font-size="10"'),
       text(36, 64, peakLabel, 'class="v" font-size="22"'),
-      text(36, 82, 'busiest 4-hour window', `class="t" font-size="11" fill="${tn.fgDark}"`),
-      `<text x="36" y="110" class="t" font-size="11" fill="${tn.fgDark}">${strong(`${night}%`)} between 10 pm and 5 am</text>`,
+      peakSwatch(36, 82),
+      text(51, 82, 'busiest 4-hour window', `class="t" font-size="11" fill="${tn.fgDark}"`),
+      nightSwatch(36, 110),
+      `<text x="51" y="110" class="t" font-size="11" fill="${tn.fgDark}">${strong(`${night}%`)} between 10 pm and 5 am</text>`,
       text(36, 130, `${commits} commits · ${tz}`, `class="t" font-size="9.5" fill="${tn.comment}"`),
     );
   } else {
     body.push(
       text(22, 32, 'COMMIT HOURS', 'class="l" font-size="12"'),
       text(22, 62, peakLabel, 'class="v" font-size="24"'),
-      text(22, 82, 'busiest 4-hour window', `class="t" font-size="12" fill="${tn.fgDark}"`),
+      peakSwatch(22, 82),
+      text(37, 82, 'busiest 4-hour window', `class="t" font-size="12" fill="${tn.fgDark}"`),
       text(418, 62, `${night}%`, 'class="v" font-size="24" text-anchor="end"'),
+      nightSwatch(418 - monoWidth('10 pm – 5 am', 12) - 15, 82),
       text(418, 82, '10 pm – 5 am', `class="t" font-size="12" fill="${tn.fgDark}" text-anchor="end"`),
       text(22, 104, `${commits} commits · ${tz}`, `class="t" font-size="11" fill="${tn.comment}"`),
     );

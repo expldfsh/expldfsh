@@ -65,7 +65,8 @@ The second image is a 24-column histogram of *when* commits are written.
 - **Busiest 4-hour window**: the contiguous 4-hour span (wrapping midnight) with the most commits; ties
   go to the earliest span counted from 06:00.
 - **Night share**: the percentage of commits made between 22:00 and 04:59.
-- The axis starts at 06:00 so the night forms one block on the right (shaded, with the crescent).
+- On the chart, the busiest 4-hour window is the soft blue box, and the night hours (22:00–04:59)
+  are underlined in magenta with a crescent. The axis starts at 06:00 so the night is one contiguous span.
 
 Only aggregated hour counts are written to the snapshot. No repository names, messages or hashes.
 
