@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="32" viewBox="0 0 440 32" shape-rendering="crispEdges" role="img" aria-labelledby="title desc"><title id="title">expldfsh.com — personal website</title><desc id="desc">Editor-style status line. Links to https://expldfsh.com. Graphics last synced with GitHub data on 2026-11-18.</desc><style>
+.t{font-family:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace}
+.v{font-family:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;font-weight:700;fill:#c8d3f5}
+.l{font-family:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;font-weight:500;fill:#737aa2;letter-spacing:1.2px}
+.tw{animation:tw 5s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.2}50%{opacity:.85}}
+.fl{animation:fl 7s steps(1) infinite}
+@keyframes fl{0%,88%,100%{opacity:1}90%{opacity:.35}92%{opacity:1}94%{opacity:.55}}
+.bl{animation:bl 2.4s steps(1) infinite}
+@keyframes bl{0%,60%{opacity:1}61%,100%{opacity:.15}}
+.sh{animation:sh 4s ease-in-out infinite}
+@keyframes sh{0%,100%{transform:translateX(0)}50%{transform:translateX(3px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style><defs><clipPath id="card"><rect width="440" height="32" rx="8" shape-rendering="geometricPrecision"/></clipPath></defs><g clip-path="url(#card)"><rect x="0" y="0" width="440" height="32" fill="#1e2030"/><rect x="0" y="0" width="71" height="32" fill="#82aaff"/><text x="35.5" y="20.2" class="t" font-size="12" font-weight="700" fill="#1e2030" text-anchor="middle">NORMAL</text><polygon points="71,0 83,16 71,32" fill="#82aaff" shape-rendering="geometricPrecision"/><rect x="71" y="0" width="135" height="32" fill="#3b4261"/><text x="141.5" y="20.2" class="t" font-size="12" font-weight="500" fill="#c8d3f5" text-anchor="middle">expldfsh.com ↗</text><polygon points="206,0 218,16 206,32" fill="#3b4261" shape-rendering="geometricPrecision"/><rect x="290" y="0" width="150" height="32" fill="#c099ff"/><polygon points="290,0 278,16 290,32" fill="#c099ff" shape-rendering="geometricPrecision"/><text x="365" y="20.2" class="t" font-size="12" font-weight="700" fill="#1e2030" text-anchor="middle">synced 2026-11-18</text></g></svg>

@@ -1,0 +1,28 @@
+{
+  "name": "expldfsh-profile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Generates the night-city graphics for the expldfsh GitHub profile README from real GitHub data.",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "fetch": "node scripts/fetch-github-data.ts",
+    "generate": "node scripts/generate.ts",
+    "generate:sample": "node scripts/generate.ts --data data/sample-data.json --out preview/sample",
+    "sample-data": "node scripts/make-sample-data.ts",
+    "validate": "node scripts/validate.ts",
+    "preview": "node scripts/preview.ts",
+    "hash-repo": "node scripts/hash-repo.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test \"tests/**/*.test.ts\"",
+    "check": "npm run typecheck && npm test && npm run validate"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "fast-xml-parser": "^5.12.1",
+    "typescript": "^7.0.2",
+    "yaml": "^2.9.1"
+  }
+}

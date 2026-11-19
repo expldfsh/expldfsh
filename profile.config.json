@@ -1,0 +1,10 @@
+{
+  "login": "expldfsh",
+  "timezone": "America/Toronto",
+  "website": "https://expldfsh.com",
+  "hours": {
+    "excludeRepoSha256": [
+      "8b030ec44c386e78c97ded7a031fcebb694fcc2019e00c7546e0fa840e71992d"
+    ]
+  }
+}

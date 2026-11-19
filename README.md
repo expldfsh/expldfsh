@@ -1,24 +1,34 @@
-<p align="center">
-  <img src="./chiken.gif" alt="A little pixel chicken walking" width="160">
-</p>
+<div align="center">
+  <a href="docs/GENERATOR.md">
+    <picture>
+      <source media="(max-width: 600px)" srcset="assets/generated/city-mobile.svg">
+      <img src="assets/generated/city.svg" width="100%" alt="A night skyline drawn from my GitHub contributions over the past year: one building per week, one window per day, brighter windows for busier days.">
+    </picture>
+  </a>
+</div>
 
-<h3 align="center">Hi, I'm expldfsh 👋</h3>
+### Hi there 👋
 
-<p align="center">
-  CS student at UofT.<br>
-  I enjoy coding, learning new things, and bringing ideas to life.<br>
-</p>
+I'm a CS Specialist student at the University of Toronto Mississauga.
+I like building small, useful tools — lately AI-powered apps and developer utilities — often late at night.
 
-<p align="center">
-  <a href="https://expldfsh.com">
-    <img
-      src="https://img.shields.io/badge/Explore_My_Little_Space_%E2%86%97-282A40?style=for-the-badge&logo=homeassistant&logoColor=8BDCF2"
-      alt="Explore My Little Space — Personal website"
-      width="400"
-    >
+- 🛠️ Mostly writing **Python** and **Go**, with some **C** for systems coursework
+- ⌨️ Living in **Neovim** and the terminal
+
+📫 Reach me at **[expldfsh@gmail.com](mailto:expldfsh@gmail.com)** · 🌐 Personal website: **[expldfsh.com](https://expldfsh.com)**
+
+<div align="center">
+  <a href="docs/GENERATOR.md#commit-hours">
+    <picture>
+      <source media="(max-width: 600px)" srcset="assets/generated/commit-hours-mobile.svg">
+      <img src="assets/generated/commit-hours.svg" width="100%" alt="When I commit: the hour-of-day distribution of my commits over the past year.">
+    </picture>
   </a>
   <br>
-  <sub>Personal website · expldfsh.com</sub>
-</p>
-
----
+  <a href="https://expldfsh.com">
+    <picture>
+      <source media="(max-width: 600px)" srcset="assets/generated/statusline-mobile.svg">
+      <img src="assets/generated/statusline.svg" width="100%" alt="expldfsh.com — personal website">
+    </picture>
+  </a>
+</div>
